@@ -15,8 +15,6 @@ jobs:
       with:
         image: tebohoxthapeli/simple-express
         tags: tebohoxthapeli/simple-express
-        addLatest: true
-        addTimestamp: true
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
