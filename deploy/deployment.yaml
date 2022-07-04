@@ -1,21 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: simple-express
-    labels:
-        app: simple-express
+	name: simple-express
+	labels:
+		app: simple-express
 spec:
-    replicas: 1
-    selector:
-        matchLabels:
-            app: simple-express
-    template:
-        metadata:
-            labels:
-                app: simple-express
-        spec:
-            containers:
-                - name: simple-express
-                  image: tebohoxthapeli/simple-express:latest
-                  ports:
-                      - containerPort: 8080
+	replicas: 1
+	selector:
+		matchLabels:
+			app: simple-express
+	template:
+		metadata:
+			labels:
+				app: simple-express
+		spec:
+			containers:
+				- name: simple-express
+					image: tebohoxthapeli/simple-express:latest
+					ports:
+						- containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+	name: simple-express-service
+	namespace: default
+	selfLink: /api/v1/namespaces/default/services/simple-express-service
+spec:
+  selector:
+		app: simple-express
+	ports:
+		-	protocol: TCP
+			port: 8080
+			targetPort: 8080
